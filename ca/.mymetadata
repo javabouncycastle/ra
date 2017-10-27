@@ -3,7 +3,7 @@
   type="WEB"
   name="ca"
   id="myeclipse.1493192805853"
-  context-root="/km"
+  context-root="/ca"
   j2ee-spec="1.7"
   archive="ca.war">
   <attributes>

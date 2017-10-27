@@ -10,11 +10,11 @@ public interface SysCodeDAO {
 
 	public SysCode findByName(SysCode sysCode);
 
-	public List<SysCode> selectAll(SysCode sysCode);
+	public List<SysCode> selectAll();
 
-	public int delete(Long id);
+	public int delete(String id);
 
-	public SysCode findById(Long id);
+	public SysCode findById(String id);
 
 	public void updateValid(SysCode sysCode);
 
@@ -27,30 +27,6 @@ public interface SysCodeDAO {
 	 * @return 
 	 */
 	public List<SysCode> serachByContion(SysCode sysCode);
-
-	/**
-	 * @param algorithmName
-	 * @return
-	 */
-	public int countNum(String algorithmName);
-
-	/**
-	 * @param sysCode
-	 * @return
-	 */
-	public List<SysCode> selectMin(SysCode sysCode);
-
-	/**
-	 * @param sysCode
-	 * @return
-	 */
-	public List<SysCode> selectBuffer(SysCode sysCode);
-
-	/**
-	 * @param sysCode
-	 * @return
-	 */
-	public List<SysCode> selectBufSize(SysCode sysCode);
 
 
 }

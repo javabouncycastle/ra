@@ -3,20 +3,20 @@
 <mapper namespace="cn.com.sure.syscode.dao.SysCodeDAO">  
 	
 	<resultMap type="cn.com.sure.syscode.entry.SysCode" id="SysCodeResultMap">
-		<id column="id" javaType="long" property="id"/>
+		<id column="id" javaType="String" property="id"/>
 		<result column="paraCode" javaType="String" property="paraCode"/>
 		<result column="paraValue" javaType="String" property="paraValue"/>
 		<result column="isValid" javaType="int" property="isValid"/>
 		<result column="notes" javaType="String" property="notes"/>
 		<association property="paraType" javaType="cn.com.sure.syscode.entry.SysCodeType" >
-			<id column="TypeId" javaType="long" property="id"/>
+			<id column="TypeId" javaType="String" property="id"/>
 			<result column="typeParaType" javaType="String" property="paraType"/>
 			<result column="typeNotes" javaType="String" property="notes"/>
 		</association>
 	</resultMap>
 
 	<insert id="insert" parameterType="cn.com.sure.syscode.entry.SysCode">
-		insert into km_sys_code(
+		insert into ca_sys_code(
 			para_code,
 			para_value,
 			para_type,
@@ -42,7 +42,7 @@
 			ksty.id as TypeId,
 			ksty.para_type as typeParaType,
 			ksty.notes as typeNotes
-		 from km_sys_code ks,km_sys_param_type ksty
+		 from ca_sys_code ks,ca_sys_param_type ksty
 		 where ks.para_type=ksty.id
 	</select>
 	
@@ -55,7 +55,7 @@
 			is_valid as isValid,
 			notes
 		from
-			km_sys_code
+			ca_sys_code
 		where
 			id=#{id}
 	</select>
@@ -68,30 +68,33 @@
 			para_type as paraType,
 			is_valid as isValid,
 			notes
-		from km_sys_code
+		from ca_sys_code
 			where para_code=#{paraCode}
 	</select>
 	
- 	<select id="findByType"  parameterType="cn.com.sure.syscode.entry.SysCode" resultType="cn.com.sure.syscode.entry.SysCode">
+ 	<select id="findByType"  parameterType="cn.com.sure.syscode.entry.SysCode" resultMap="SysCodeResultMap">
 		select 
-			ksc.id,
-			ksc.para_code as paraCode,
-			ksc.para_value as paraValue,
-			ksc.para_type as paraType,
-			ksc.is_valid as isValid,
-			ksc.notes
-		from km_sys_code ksc,km_sys_param_type kspt
-			where ksc.para_type=kspt.id
-			and kspt.para_type=#{paraType.paraType}
-			and ksc.is_valid=#{isValid}
+			csc.id as id,
+			csc.para_code as paraCode,
+			csc.para_value as paraValue,
+			csc.para_type as paraType,
+			csc.is_valid as isValid,
+			csc.notes,
+			cspt.id as typeId,
+			cspt.para_type as typeParaType,
+			cspt.notes as typeNotes
+		from ca_sys_code csc,ca_sys_param_type cspt
+			where csc.para_type=cspt.id
+			and cspt.para_type=#{paraType.paraType}
+			and csc.is_valid=#{isValid}
 	</select>
 	
 	<update id="updateValid" parameterType="cn.com.sure.syscode.entry.SysCode">
-		update km_sys_code set is_valid=#{isValid} where id=#{id}
+		update ca_sys_code set is_valid=#{isValid} where id=#{id}
 	</update>
 	
 	<update id="update" parameterType="cn.com.sure.syscode.entry.SysCode">
-	 update km_sys_code 
+	 update ca_sys_code 
 		set 
 		 	para_code=#{paraCode},
 		 	para_value=#{paraValue},
@@ -101,8 +104,8 @@
 	 where id=#{id}
 	</update>
 	
-	<delete id="delete" parameterType="long" >
-		delete from km_sys_code where id=#{id}
+	<delete id="delete" parameterType="String" >
+		delete from ca_sys_code where id=#{id}
 	</delete>
 	
 	 <select id="serachByContion" parameterType="cn.com.sure.syscode.entry.SysCode" resultMap="SysCodeResultMap">
@@ -116,7 +119,7 @@
 			ksty.id as TypeId,
 			ksty.para_type as typeParaType,
 			ksty.notes as typeNotes
-		 from km_sys_code ks,km_sys_param_type ksty
+		 from ca_sys_code ks,ca_sys_param_type ksty
 		 where 
 		 	ks.para_type=ksty.id
 			<if test="id!=null and id!='' ">
@@ -132,48 +135,4 @@
 		 	</if>
 	</select>
 	
-	<select id="countNum" parameterType="String" resultType="java.lang.Integer" >
-		select 
-		count(*)
-		from
-			keypair_standby
-		whwere
-			km_sys_code=#{algorithmName}
-	</select>
-	
-	<select id="selectMin" parameterType="cn.com.sure.syscode.entry.SysCode" resultMap="SysCodeResultMap">
-	
-		select 
-			ks.para_value as paraValue
-		 from 
-		 	km_sys_code ks,km_sys_param_type ksty
-		 where 
-		 	ks.para_type=ksty.id
-		 	and ksty.para_type=#{paraType.paraType}
-		 	and ks.is_valid=#{isValid}
-	</select>
-	
-	<select id="selectBuffer" parameterType="cn.com.sure.syscode.entry.SysCode" resultMap="SysCodeResultMap">
-	
-		select 
-			ks.para_value as paraValue
-		 from 
-		 	km_sys_code ks,km_sys_param_type ksty
-		 where 
-		 	ks.para_type=ksty.id
-		 	and ksty.para_type=#{paraType.paraType}
-		 	and ks.is_valid=#{isValid}
-	</select>
-	
-	<select id="selectGenKeyNum" parameterType="cn.com.sure.syscode.entry.SysCode" resultType="java.lang.String">
-	
-		select 
-			ks.para_value as paraValue
-		 from 
-		 	km_sys_code ks,km_sys_param_type ksty
-		 where 
-		 	ks.para_type=ksty.id
-		 	and ksty.para_type=#{paraType.paraType}
-		 	and ks.is_valid=#{isValid}
-	</select>
 </mapper>

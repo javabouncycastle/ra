@@ -1,11 +1,9 @@
 package cn.com.sure.syscode.entry;
 
-import javax.persistence.Id;
 
 public class SysCode {
 
-	@Id
-    private Long id;
+    private String id;
 	
 	/**
 	 * 参数名称
@@ -18,7 +16,7 @@ public class SysCode {
     private String paraValue;
     
 	/**
-	 * 参数类别 - 引用km_sys_code_type表
+	 * 参数类别 - 引用ca_sys_code_type表
 	 */
     private SysCodeType paraType;
     
@@ -41,14 +39,13 @@ public class SysCode {
 		this.paraType = paraType;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
-	
 
 	public String getParaCode() {
 		return paraCode;

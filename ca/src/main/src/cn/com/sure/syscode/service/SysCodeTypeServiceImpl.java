@@ -62,7 +62,7 @@ public class SysCodeTypeServiceImpl implements SysCodeTypeService {
 	 * @see cn.com.sure.syscode.service.SysCodeTypeService#delete(java.lang.Long)
 	 */
 	@Override
-	public int delete(Long id) {
+	public int delete(String id) {
 		LOG.debug("delete - start");
 		int i = sysCodeTypeDAO.delete(id);
 		LOG.debug("delete - start");
@@ -95,7 +95,7 @@ public class SysCodeTypeServiceImpl implements SysCodeTypeService {
 	 * @see cn.com.sure.syscode.service.SysCodeTypeService#selectById(java.lang.Long)
 	 */
 	@Override
-	public SysCodeType selectById(Long id) {
+	public SysCodeType selectById(String id) {
 		LOG.debug("selectById - start");
 		SysCodeType sysCodeTypes = sysCodeTypeDAO.selectById(id);
 		LOG.debug("selectById - end");

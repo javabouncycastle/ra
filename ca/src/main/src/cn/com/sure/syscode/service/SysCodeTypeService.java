@@ -30,7 +30,7 @@ public interface SysCodeTypeService {
 	 * @param id
 	 * @return 
 	 */
-	int delete(Long id);
+	int delete(String id);
 
 	/**
 	 * @param sysCodeType
@@ -45,9 +45,9 @@ public interface SysCodeTypeService {
 	List<SysCodeType> searchByCondition(SysCodeType sysCodeType);
 
 	/**
-	 * @param id
+	 * @param string
 	 * @return
 	 */
-	SysCodeType selectById(Long id);
+	SysCodeType selectById(String string);
 	
 }

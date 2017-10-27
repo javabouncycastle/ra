@@ -8,58 +8,66 @@ import cn.com.sure.ca.CaApplicationexception;
 import cn.com.sure.syscode.entry.SysCode;
 
 public interface SysCodeService {
-
+	
+	
+	/**
+	 * @param sysCode
+	 * @param request
+	 * @return
+	 */
 	int insert(SysCode sysCode, HttpServletRequest request)throws  CaApplicationexception ;
 
-	int update(SysCode sysCode);
-
-	int remove(Long id);
-
-	void suspend(Long id);
-
-	void activate(Long id);
-
-	List<SysCode> selectAll(SysCode sysCode);
-	
-	List<SysCode> selectByType(SysCode sysCode);
 
 	/**
 	 * @param sysCode
-	 * @return 
+	 * @return
+	 */
+	List<SysCode> selectAll();
+	
+	/**
+	 * @param sysCode
+	 * @return
 	 */
 	List<SysCode> searchByCondition(SysCode sysCode);
+
+	/**
+	 * @param string
+	 * @return
+	 */
+	SysCode selectById(String string);
+
+	/**
+	 * @param sysCode
+	 * @return
+	 */
+	List<SysCode> selectByParatype(SysCode sysCode);
+
+
+	/**
+	 * @param sysCode
+	 * @return
+	 */
+	int update(SysCode sysCode);
+
 
 	/**
 	 * @param id
 	 * @return
 	 */
-	SysCode selectById(Long id);
+	int remove(String id);
+
 
 	/**
-	 * @return
+	 * @param id
 	 */
-	List<SysCode> selectMin();
+	void suspend(String id);
+
 
 	/**
-	 * @return
+	 * @param id
 	 */
-	List<SysCode> selectBuffer();
+	void activate(String id);
 
-	/**
-	 * @return
-	 */
-	List<SysCode> selectGenKeyNum();
 
-	/**
-	 * @param sysCode
-	 * @return
-	 */
-	List<SysCode> selectBufSize(SysCode sysCode);
-
-	/**
-	 * @return 
-	 * 
-	 */
-	List<SysCode> selectServicePort();
 
 }

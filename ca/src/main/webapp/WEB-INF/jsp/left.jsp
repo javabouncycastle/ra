@@ -17,47 +17,6 @@
           		<li class="sub">
             		<a href="javascript:;">
               			<i class="fa fa-database"></i>
-              			<font style='font-family:"微软雅黑"'>任务管理</font>
-              			<div class="pull-right"><span class="caret"></span>
-              		</div>
-            		</a>
-            		<ul class="templatemo-submenu">
-	              		<li>
-	              			<a href="<%=request.getContextPath()%>/algorithm/selectAll.do"><font style='font-family:"微软雅黑"'>密钥算法列表</font></a>
-	              		</li>
-            		</ul>
-            		<ul class="templatemo-submenu">
-	              		<li>
-	              			<a href="<%=request.getContextPath()%>/kpgTask/selectAll.do"><font style='font-family:"微软雅黑"'>密钥任务列表</font></a>
-	              		</li>
-            		</ul>
-          		</li>
-          			<li class="sub">
-            		<a href="javascript:;">
-              			<i class="fa fa-database"></i>
-              			<font style='font-family:"微软雅黑"'>密钥管理</font>
-              			<div class="pull-right"><span class="caret"></span>
-              		</div>
-            		</a>
-            		<ul class="templatemo-submenu">
-	              		<li>
-	              			<a href="<%=request.getContextPath()%>/keypairStandby/selectAll.do"><font style='font-family:"微软雅黑"'>备用密钥列表</font></a>
-	              		</li>
-            		</ul>
-            		<ul class="templatemo-submenu">
-	              		<li>
-	              			<a href="<%=request.getContextPath()%>/keypairInuse/selectAll.do"><font style='font-family:"微软雅黑"'>在用密钥列表列表</font></a>
-	              		</li>
-            		</ul>
-            		<ul class="templatemo-submenu">
-	              		<li>
-	              			<a href="<%=request.getContextPath()%>/kpArchive/selectAll.do"><font style='font-family:"微软雅黑"'>历史密钥列表列表</font></a>
-	              		</li>
-            		</ul>
-          		</li>
-          		<li class="sub">
-            		<a href="javascript:;">
-              			<i class="fa fa-database"></i>
               			<font style='font-family:"微软雅黑"'>系统参数</font>
               			<div class="pull-right"><span class="caret"></span>
               		</div>
@@ -89,6 +48,18 @@
 		              <li  ><a href="<%=request.getContextPath()%>/conf/syscode/list"><font style='font-family:"微软雅黑"'>管理员列表</font></a></li>
 		            </ul>               
          		</li>
+         		
+         		
+         		<li class="sub">
+		            <a href="javascript:;">
+		              <i class="fa fa-database"></i><font style='font-family:"微软雅黑"'>模板管理</font><div class="pull-right"><span class="caret"></span></div>
+		            </a>
+		            <ul class="templatemo-submenu">
+		              <li  ><a href="<%=request.getContextPath()%>/certTemplate/selectAll.do"><font style='font-family:"微软雅黑"'>证书模板列表</font></a></li>
+		            </ul>               
+         		</li>
+         		
+         		
           	   <li>
           	   	   <a href="javascript:;" data-toggle="modal" data-target="#confirmModal"><i class="fa fa-sign-out"></i>Sign Out</a>
           	   </li>

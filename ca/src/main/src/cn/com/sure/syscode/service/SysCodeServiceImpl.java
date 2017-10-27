@@ -13,10 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.com.sure.ca.CaApplicationexception;
 import cn.com.sure.ca.CaErrorMessageConstants;
-import cn.com.sure.common.KmConstants;
+import cn.com.sure.common.CaConstants;
 import cn.com.sure.syscode.dao.SysCodeDAO;
 import cn.com.sure.syscode.entry.SysCode;
-import cn.com.sure.syscode.entry.SysCodeType;
 
 @Transactional(propagation = Propagation.REQUIRED)
 @Service("SysCodeService")
@@ -34,8 +33,9 @@ public class SysCodeServiceImpl implements SysCodeService{
 		LOG.debug("insert - start");
 		SysCode dbSysCode = sysCodeDAO.findByName(sysCode);
 		int i = 0 ;
+		i =sysCodeDAO.insert(sysCode);
 		if(dbSysCode==null){
-			i =sysCodeDAO.insert(sysCode);
+			i =sysCodeDAO.insert(sysCode);	
 		}if(dbSysCode!=null){
 			CaApplicationexception.throwException(CaErrorMessageConstants.paraValueExist, new String[]{sysCode.getParaValue()});
 		}
@@ -53,7 +53,7 @@ public class SysCodeServiceImpl implements SysCodeService{
 	}
 
 	@Override
-	public int remove(Long id) {
+	public int remove(String id) {
 		LOG.debug("remove - start");
 		int i = sysCodeDAO.delete(id);
 		LOG.debug("remove - end");
@@ -61,40 +61,28 @@ public class SysCodeServiceImpl implements SysCodeService{
 	}
 
 	@Override
-	public void suspend(Long id) {
+	public void suspend(String id) {
 		LOG.debug("suspend - start");
 		SysCode sysCode = sysCodeDAO.findById(id);
-		sysCode.setIsValid(KmConstants.YES_OR_NO_OPTION_NO);
+		sysCode.setIsValid(CaConstants.YES_OR_NO_OPTION_NO);
 		sysCodeDAO.updateValid(sysCode);
 		LOG.debug("suspend - end");
 	}
 
 	@Override
-	public void activate(Long id) {
+	public void activate(String id) {
 		LOG.debug("activate - start");
 		SysCode sysCode = sysCodeDAO.findById(id);
-		sysCode.setIsValid(KmConstants.YES_OR_NO_OPTION_YES);
+		sysCode.setIsValid(CaConstants.YES_OR_NO_OPTION_YES);
 		sysCodeDAO.updateValid(sysCode);
 		LOG.debug("activate - start");
 	}
 
 	@Override
-	public List<SysCode> selectAll(SysCode sysCode) {
+	public List<SysCode> selectAll() {
 		LOG.debug("selectAll - start");
-		List<SysCode> sysCodes = sysCodeDAO.selectAll(sysCode);
+		List<SysCode> sysCodes = sysCodeDAO.selectAll();
 		LOG.debug("selectAll - end");
-		return sysCodes;
-	}
-
-	@Override
-	public List<SysCode> selectByType(SysCode sysCode) {
-		LOG.debug("selectByType - start");
-		SysCodeType sysCodeType = new SysCodeType();
-		sysCodeType.setParaType(KmConstants.TYPE_ID_TASK_STATUS);
-		sysCode.setParaType(sysCodeType);
-		sysCode.setIsValid(KmConstants.YES_OR_NO_OPTION_YES);
-		List<SysCode> sysCodes = this.sysCodeDAO.findByType(sysCode);
-		LOG.debug("selectByType - end");
 		return sysCodes;
 	}
 
@@ -110,7 +98,7 @@ public class SysCodeServiceImpl implements SysCodeService{
 	 * @see cn.com.sure.syscode.service.SysCodeService#selectById(java.lang.Long)
 	 */
 	@Override
-	public SysCode selectById(Long id) {
+	public SysCode selectById(String id) {
 		LOG.debug("selectById - start");
 		SysCode sysCodes = sysCodeDAO.findById(id);
 		LOG.debug("selectById - end");
@@ -118,81 +106,13 @@ public class SysCodeServiceImpl implements SysCodeService{
 	}
 
 	/* (non-Javadoc)
-	 * @see cn.com.sure.syscode.service.SysCodeService#selectMin()
+	 * @see cn.com.sure.syscode.service.SysCodeService#selectByParatype(cn.com.sure.syscode.entry.SysCode)
 	 */
 	@Override
-	public List<SysCode> selectMin() {
-		LOG.debug("selectMin - start");
-		SysCodeType sysCodeType = new SysCodeType();
-		sysCodeType.setParaType(KmConstants.KEY_NUM_MIN);
-		SysCode sysCode = new SysCode();
-		sysCode.setIsValid(KmConstants.YES_OR_NO_OPTION_YES);
-		sysCode.setParaType(sysCodeType);
-		List<SysCode> listMin = sysCodeDAO.selectMin(sysCode);
-		LOG.debug("selectMin - end");
-		return listMin;
-	}
-
-	/* (non-Javadoc)
-	 * @see cn.com.sure.syscode.service.SysCodeService#selectBuffer()
-	 */
-	@Override
-	public List<SysCode> selectBuffer() {
-		LOG.debug("selectMin - start");
-		SysCodeType sysCodeType = new SysCodeType();
-		sysCodeType.setParaType(KmConstants.DB_COMMIT_BUFFER);
-		SysCode sysCode = new SysCode();
-		sysCode.setIsValid(KmConstants.YES_OR_NO_OPTION_YES);
-		sysCode.setParaType(sysCodeType);
-		List<SysCode> sysList = sysCodeDAO.selectBuffer(sysCode);
-		LOG.debug("selectMin - end");
-		return sysList;
-	}
-
-	/* (non-Javadoc)
-	 * @see cn.com.sure.syscode.service.SysCodeService#selectGenKeyNum()
-	 */
-	@Override
-	public List<SysCode> selectGenKeyNum() {
-		LOG.debug("selectMin - start");
-		SysCodeType sysCodeType = new SysCodeType();
-		sysCodeType.setParaType(KmConstants.GEN_KEY_NUM);
-		SysCode sysCode = new SysCode();
-		sysCode.setIsValid(KmConstants.YES_OR_NO_OPTION_YES);
-		sysCode.setParaType(sysCodeType);
-		List<SysCode> sysList = sysCodeDAO.selectBuffer(sysCode);
-		LOG.debug("selectMin - end");
-		return sysList;
-	}
-
-	/* (non-Javadoc)
-	 * @see cn.com.sure.syscode.service.SysCodeService#selectBufSize(cn.com.sure.syscode.entry.SysCode)
-	 */
-	@Override
-	public List<SysCode> selectBufSize(SysCode sysCode) {
-		LOG.debug("selectBufSize - start");
-		SysCodeType sysCodeType = new SysCodeType();
-		sysCodeType.setParaType(KmConstants.DB_COMMIT_BUFFER);
-		sysCode.setParaType(sysCodeType);
-		sysCode.setIsValid(KmConstants.YES_OR_NO_OPTION_YES);
-		List<SysCode> codeBufSize = sysCodeDAO.findByType(sysCode);
-		LOG.debug("selectBufSize - end");
-		return codeBufSize;
-	}
-
-	/* (non-Javadoc)
-	 * @see cn.com.sure.syscode.service.SysCodeService#getServicePort()
-	 */
-	@Override
-	public List<SysCode> selectServicePort() {
-		LOG.debug("getServicePort - start");
-		SysCodeType sysCodeType = new SysCodeType();
-		sysCodeType.setParaType(KmConstants.TYPE_ID_TASK_STATUS);
-		SysCode sysCode = new SysCode();
-		sysCode.setParaType(sysCodeType);
-		sysCode.setIsValid(KmConstants.YES_OR_NO_OPTION_YES);
-		List<SysCode> sysCodes = this.sysCodeDAO.findByType(sysCode);
-		LOG.debug("getServicePort - start");
+	public List<SysCode> selectByParatype(SysCode sysCode) {
+		LOG.debug("selectByParatype - start");
+		List<SysCode> sysCodes = sysCodeDAO.findByType(sysCode);
+		LOG.debug("selectByParatype - end");
 		return sysCodes;
 	}
 

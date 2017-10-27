@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import cn.com.sure.ca.CaApplicationexception;
-import cn.com.sure.common.KmConstants;
+import cn.com.sure.common.CaConstants;
 import cn.com.sure.log.service.AuditOpLogService;
 import cn.com.sure.syscode.entry.SysCode;
 import cn.com.sure.syscode.entry.SysCodeType;
@@ -56,12 +56,12 @@ public class SysCodeController {
 			//添加审计日志
 			int result;
 			if(i==-1){
-				result = KmConstants.SUCCESS_OR_FAILD_OPTION_FAILD;
+				result = CaConstants.SUCCESS_OR_FAILD_OPTION_FAILD;
 			}else{
-				result = KmConstants.SUCCESS_OR_FAILD_OPTION_SUCCESS;
+				result = CaConstants.SUCCESS_OR_FAILD_OPTION_SUCCESS;
 			}
-			auditOpLogService.insert(KmConstants.OPERATION_TYPE_INSERT, "增加", "数据字典", null,
-					sysCode.getParaCode(), null, null, date, getIp(request), (String)request.getSession().getAttribute(KmConstants.SESSION_ADMIN_NAME), 
+			auditOpLogService.insert(CaConstants.OPERATION_TYPE_INSERT, "增加", "数据字典", null,
+					sysCode.getParaCode(), null, null, date, getIp(request), (String)request.getSession().getAttribute(CaConstants.SESSION_ADMIN_NAME), 
 					result);
 		}catch(CaApplicationexception e){
 			attr.addFlashAttribute("message",e.getMessage());
@@ -87,10 +87,10 @@ public class SysCodeController {
 	public ModelAndView selectAll(SysCode sysCode,
 			Model model, RedirectAttributes attr,HttpServletRequest request){
 		LOG.debug("selectAll - start");
-		List<SysCode> sysCodes = this.sysCodeService.selectAll(sysCode);
+		List<SysCode> sysCodes = this.sysCodeService.selectAll();
 		List<SysCodeType> sysCodeTypes = this.sysCodeTypeService.selectAll(null);
 		LOG.debug("selectAll - end");
-		return new ModelAndView("syscode/syscodeLists").addObject("sysCodes", sysCodes).addObject("sysCodeTypes",sysCodeTypes);
+		return new ModelAndView("syscode/syscodeList").addObject("sysCodes", sysCodes).addObject("sysCodeTypes",sysCodeTypes);
 	}
 	
 	
@@ -110,12 +110,12 @@ public class SysCodeController {
 		//添加审计日志
 		int result;
 		if(i==-1){
-			result=KmConstants.SUCCESS_OR_FAILD_OPTION_FAILD;
+			result=CaConstants.SUCCESS_OR_FAILD_OPTION_FAILD;
 		}else{
-			result=KmConstants.SUCCESS_OR_FAILD_OPTION_SUCCESS;
+			result=CaConstants.SUCCESS_OR_FAILD_OPTION_SUCCESS;
 		}
-		auditOpLogService.insert(KmConstants.OPERATION_TYPE_UPDATE, "更新", "数据字典", sysCode.getId().toString(), null, null, 
-				str, date, getIp(request), (String)request.getSession().getAttribute(KmConstants.SESSION_ADMIN_NAME), 
+		auditOpLogService.insert(CaConstants.OPERATION_TYPE_UPDATE, "更新", "数据字典", sysCode.getId().toString(), null, null, 
+				str, date, getIp(request), (String)request.getSession().getAttribute(CaConstants.SESSION_ADMIN_NAME), 
 				result);
 		LOG.debug("update - end!");
 		attr.addFlashAttribute("success","true");
@@ -131,19 +131,19 @@ public class SysCodeController {
 	*/
 	@RequestMapping(value = "remove")
 	public String remove(
-	@RequestParam(value = "id", required = false)Long id,
+	@RequestParam(value = "id", required = false)String id,
 	Model model,RedirectAttributes attr,HttpServletRequest request){
 		LOG.debug("remove - start!");
 		int i =  sysCodeService.remove(id);
 		//添加审计日志
 		int result;
 		if(i==-1){
-			 result = KmConstants.SUCCESS_OR_FAILD_OPTION_FAILD;
+			 result = CaConstants.SUCCESS_OR_FAILD_OPTION_FAILD;
 		}else{
-			 result = KmConstants.SUCCESS_OR_FAILD_OPTION_SUCCESS;
+			 result = CaConstants.SUCCESS_OR_FAILD_OPTION_SUCCESS;
 		}
-		auditOpLogService.insert(KmConstants.OPERATION_TYPE_DELETE, "删除", "数据字典", id.toString(), null, null, null, 
-				date,getIp(request),  (String)request.getSession().getAttribute(KmConstants.SESSION_ADMIN_NAME), result);
+		auditOpLogService.insert(CaConstants.OPERATION_TYPE_DELETE, "删除", "数据字典", id.toString(), null, null, null, 
+				date,getIp(request),  (String)request.getSession().getAttribute(CaConstants.SESSION_ADMIN_NAME), result);
 		LOG.debug("remove - end!");
 		attr.addFlashAttribute("success","true");
 		attr.addFlashAttribute("msg","删除主键为【"+id+"】信息成功");	
@@ -159,7 +159,7 @@ public class SysCodeController {
 	*/
 	@RequestMapping(value = "suspend")
 	public String suspend(
-	@RequestParam(value = "id", required = false)Long id,
+	@RequestParam(value = "id", required = false)String id,
 	Model model,RedirectAttributes attr){
 		LOG.debug("suspend - start!");
 		this.sysCodeService.suspend(id);
@@ -177,7 +177,7 @@ public class SysCodeController {
 	 */
 	@RequestMapping(value = "activate")
 	public String activate(
-	@RequestParam(value = "id", required = false)Long id,
+	@RequestParam(value = "id", required = false)String id,
 	Model model,RedirectAttributes attr){
 		LOG.debug("activate - start!");
 		this.sysCodeService.activate(id);

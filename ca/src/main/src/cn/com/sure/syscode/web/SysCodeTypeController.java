@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import cn.com.sure.ca.CaApplicationexception;
-import cn.com.sure.common.KmConstants;
+import cn.com.sure.common.CaConstants;
 import cn.com.sure.log.service.AuditOpLogService;
 import cn.com.sure.syscode.entry.SysCodeType;
 import cn.com.sure.syscode.service.SysCodeTypeService;
@@ -61,12 +61,12 @@ public class SysCodeTypeController {
 			// 添加审计日志
 			int result;
 			if(i==-1){
-				result = KmConstants.SUCCESS_OR_FAILD_OPTION_FAILD;
+				result = CaConstants.SUCCESS_OR_FAILD_OPTION_FAILD;
 			}else{
-				result = KmConstants.SUCCESS_OR_FAILD_OPTION_SUCCESS;
+				result = CaConstants.SUCCESS_OR_FAILD_OPTION_SUCCESS;
 			}
-			auditOpLogService.insert(KmConstants.OPERATION_TYPE_INSERT, "增加", "数据字典类别", null,
-					sysCodeType.getParaType(), null, null, date, getIp(request), (String)request.getSession().getAttribute(KmConstants.SESSION_ADMIN_NAME), 
+			auditOpLogService.insert(CaConstants.OPERATION_TYPE_INSERT, "增加", "数据字典类别", null,
+					sysCodeType.getParaType(), null, null, date, getIp(request), (String)request.getSession().getAttribute(CaConstants.SESSION_ADMIN_NAME), 
 					result);
 		} catch (CaApplicationexception e) {
 			attr.addFlashAttribute("message",e.getMessage());
@@ -99,12 +99,12 @@ public class SysCodeTypeController {
 		//1判断更新是否成功
 		int result;
 		if(i==-1){
-			result = KmConstants.SUCCESS_OR_FAILD_OPTION_FAILD;
+			result = CaConstants.SUCCESS_OR_FAILD_OPTION_FAILD;
 		}else{
-			result = KmConstants.SUCCESS_OR_FAILD_OPTION_SUCCESS;
+			result = CaConstants.SUCCESS_OR_FAILD_OPTION_SUCCESS;
 		}
-		auditOpLogService.insert(KmConstants.OPERATION_TYPE_UPDATE, "更新", "数据字典类别", sysCodeType.getId().toString(), null, null, 
-				str, date, getIp(request), (String)request.getSession().getAttribute(KmConstants.SESSION_ADMIN_NAME), 
+		auditOpLogService.insert(CaConstants.OPERATION_TYPE_UPDATE, "更新", "数据字典类别", sysCodeType.getId().toString(), null, null, 
+				str, date, getIp(request), (String)request.getSession().getAttribute(CaConstants.SESSION_ADMIN_NAME), 
 				result);
 		LOG.debug("update - start");
 		attr.addFlashAttribute("success","true");
@@ -121,18 +121,18 @@ public class SysCodeTypeController {
 	 * @return
 	 */
 	@RequestMapping(value = "remove")
-	public String remove(@RequestParam(value = "id", required = false)Long id,
+	public String remove(@RequestParam(value = "id", required = false)String id,
 			Model model, RedirectAttributes attr,HttpServletRequest request){
 		LOG.debug("remove - start");
 		int i = sysCodeTypeService.delete(id);
 		int result ;
 		if(i==-1){
-			result = KmConstants.SUCCESS_OR_FAILD_OPTION_FAILD;
+			result = CaConstants.SUCCESS_OR_FAILD_OPTION_FAILD;
 		}else{
-			result = KmConstants.SUCCESS_OR_FAILD_OPTION_SUCCESS;
+			result = CaConstants.SUCCESS_OR_FAILD_OPTION_SUCCESS;
 		}
-		auditOpLogService.insert(KmConstants.OPERATION_TYPE_DELETE, "删除", "数据字典类别", id.toString(), null, null, null, 
-				date,getIp(request),  (String)request.getSession().getAttribute(KmConstants.SESSION_ADMIN_NAME), result);
+		auditOpLogService.insert(CaConstants.OPERATION_TYPE_DELETE, "删除", "数据字典类别", id.toString(), null, null, null, 
+				date,getIp(request),  (String)request.getSession().getAttribute(CaConstants.SESSION_ADMIN_NAME), result);
 		LOG.debug("remove - end");
 		attr.addFlashAttribute("success","true");
 		attr.addFlashAttribute("msg","删除主键为【"+id+"】信息成功");

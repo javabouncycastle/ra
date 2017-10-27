@@ -6,7 +6,8 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/webapp/jsBak"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/src"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
-        <property name="context-root" value="/km"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/ca"/>
         <property name="java-output-path" value="/km/src/main/webapp/src/main/resources"/>
+        <property name="context-root" value="/ca"/>
     </wb-module>
 </project-modules>

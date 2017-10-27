@@ -40,7 +40,7 @@ public interface SysCodeTypeDAO {
 	 * @param id
 	 * @return 
 	 */
-	public int delete(Long id);
+	public int delete(String id);
 
 	/**
 	 * @param sysCodeType
@@ -52,5 +52,5 @@ public interface SysCodeTypeDAO {
 	 * @param id
 	 * @return
 	 */
-	public SysCodeType selectById(Long id);
+	public SysCodeType selectById(String id);
 }

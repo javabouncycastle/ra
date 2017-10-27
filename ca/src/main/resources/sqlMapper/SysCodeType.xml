@@ -3,7 +3,7 @@
 <mapper namespace="cn.com.sure.syscode.dao.SysCodeTypeDAO">  
 
 	<insert id="insert" parameterType="cn.com.sure.syscode.entry.SysCodeType">
-		insert into km_sys_param_type(
+		insert into ca_sys_param_type(
 			para_type,
 			notes
 		)values(
@@ -17,7 +17,7 @@
 			id,
 			para_type as paraType,
 			notes
-		 from km_sys_param_type
+		 from ca_sys_param_type
 		 where
 		  id=#{id}
 	</select>
@@ -27,7 +27,7 @@
 			id,
 			para_type as paraType,
 			notes
-		 from km_sys_param_type
+		 from ca_sys_param_type
 	</select>
 	
 	<select id="findByType" parameterType="cn.com.sure.syscode.entry.SysCodeType" resultType="cn.com.sure.syscode.entry.SysCodeType">
@@ -35,7 +35,7 @@
 			id,
 			para_type as paraType,
 			notes
-		from km_sys_param_type
+		from ca_sys_param_type
 			where para_type=#{paraType}
 	</select>
 	
@@ -44,7 +44,7 @@
 			id,
 			para_type as paraType,
 			notes
-		 from km_sys_param_type
+		 from ca_sys_param_type
 		 where 1=1
 		 	<if test="id!=null and id!='' ">
 		 		and id=#{id}
@@ -55,15 +55,15 @@
 	</select>
 	
 	<update id="update" parameterType="cn.com.sure.syscode.entry.SysCodeType">
-	 update km_sys_param_type 
+	 update ca_sys_param_type 
 		set 
 		 	para_type = #{paraType},
 			notes=#{notes}
 	 where id=#{id}
 	</update>
 	
-	<delete id="delete" parameterType="long">
-		delete from km_sys_param_type where id=#{id}
+	<delete id="delete" parameterType="String">
+		delete from ca_sys_param_type where id=#{id}
 	</delete>
 	
 </mapper>

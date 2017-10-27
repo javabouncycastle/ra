@@ -3,7 +3,6 @@
  */
 package cn.com.sure.syscode.entry;
 
-import javax.persistence.Id;
 
 /**
  * @author Limin
@@ -12,8 +11,7 @@ import javax.persistence.Id;
  */
 public class SysCodeType {
 	
-	@Id
-    private Long id;
+    private String id;
    
 	/**
 	 * 参数值(显示值)
@@ -27,12 +25,13 @@ public class SysCodeType {
     private String notes;
 
 
-	public Long getId() {
+
+	public String getId() {
 		return id;
 	}
 
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

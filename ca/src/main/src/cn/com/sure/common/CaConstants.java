@@ -1,7 +1,7 @@
 package cn.com.sure.common;
 
 
-public class KmConstants {
+public class CaConstants {
 	
 	public static final int YES_OR_NO_OPTION_YES = 1;//停用启用-启用
 	public static final int YES_OR_NO_OPTION_NO = 0;//停用启用-停用
@@ -21,33 +21,20 @@ public class KmConstants {
 	public static final String SESSION_ADMIN_TERM_ID  = "OLTAX_ADMIN_TERM_ID";
 	public static final String SESSION_ADMIN_DN       = "OLTAX_ADMIN_DN";
 	
-	public static final int ADMIN_AUTH_NUM = 10000;
 	
-	// 任务状态
-	public static final String TYPE_ID_TASK_STATUS = "status";    // 任务状态TYPE
+	//证书有效天数
+	public static final String VALIDITY="validity";
+	//密钥类型
+	public static final String KPG_ALGORITHM="kpgAlgorithm";
+	//签名证书用法
+	public static final String SIGN_CERT_KEY_USAGE="signCertKeyUsage";
+	//签名证书用法拓展
+	public static final String SIGN_CERT_EXTENDED_KEY_USAGE="signCertExtendedKeyUsage";
+	//加密证书用法
+	public static final String ENC_CERT_KEY_USAGE="encCertKeyUsage";
+	//加密证书用法拓展
+	public static final String ENC_CERT_EXTENDED_KEY_USAGE="encCertExtendedKeyUsage";
 	
-	//密钥最小数量
-	public static final String KEY_NUM_MIN="keyNumMin";
-	
-	//密钥生成数量
-	public static final String GEN_KEY_NUM="genKeyNum";
-	
-	//缓存数量
-	public static final String DB_COMMIT_BUFFER = "dbCommitBufsize";
-	
-	public static final long CODE_ID_TASK_STATUS_NOT_STARTED = 20;        //执行状态 - 尚未开始
-	public static final long CODE_ID_TASK_STATUS_WAITING_FOR_EXECUTING = 21;   //执行状态 - 任务已启动
-	
-	public static final long CODE_ID_TASK_STATUS_EXECUTING   = 22;       //执行状态 - 正在执行
-	public static final long CODE_ID_TASK_STATUS_MANUAL_INTERRUPTED = 23;//执行状态 - 人工中断Manual interrupt
-	public static final long CODE_ID_TASK_STATUS_FINISHED = 24;          //执行状态 - 正常结束
-	public static final long CODE_ID_TASK_STATUS_EXCEPTION = 25;         //执行状态 - 异常结束
-
-	public static final long CODE_ID_TASK_STATUS_MANUAL_PAUSED = 26;      //执行状态 - 人工暂停
-	public static final long CODE_ID_TASK_STATUS_MANUAL_RESUMED = 27;     //执行状态 - 人工继续
-	
-	
-	// 证书状态
 	public static final long TYPE_ID_CERT_STATUS = 38L;
 
 	public static final long CODE_ID_CERT_STATUS_GET_AUTHCODE         = 3801L; //证书状态  - 获取两码成功（23）证书未下载
