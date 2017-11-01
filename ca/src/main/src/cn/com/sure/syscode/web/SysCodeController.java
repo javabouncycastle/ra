@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import cn.com.sure.ca.CaApplicationexception;
+import cn.com.sure.ca.socket.CaSocketClientThread;
 import cn.com.sure.common.CaConstants;
 import cn.com.sure.log.service.AuditOpLogService;
 import cn.com.sure.syscode.entry.SysCode;
@@ -38,6 +39,7 @@ public class SysCodeController {
 	
 	@Autowired
 	private AuditOpLogService auditOpLogService;
+	
 	
 	Date date = new Date();
 	
@@ -199,6 +201,24 @@ public class SysCodeController {
 		LOG.debug("searchByCondition - end");
 		return new ModelAndView("syscode/syscodeList").addObject("sysCodes", sysCodes);
 		
+	}
+	
+	/**
+	 * UC-SYS01-12同步密钥算法
+	 * @return
+	 */
+	@RequestMapping(value="synchronousKpg")
+	public String synchronousKpg(){
+		LOG.debug("synchronousKpg - start");
+		
+		//1.删除数据字典表中关于密钥算法的记录
+		sysCodeService.deleteByParaCode(CaConstants.KEY_PAIR_ALGORITHM);
+		
+		//2.通过socket把同步的信息传到km
+		new Thread(new CaSocketClientThread()).start();
+		
+		LOG.debug("synchronousKpg - end");
+		return "redirect:/syscode/selectAll.do";
 	}
 	
 	

@@ -10,7 +10,7 @@
 	            <li><a href="<%=request.getContextPath()%>/main">主页面</a></li>
 	            <li class="active">数据字典列表</li>
 	            <li><a href="../../sign-in.html">Sign In Form</a></li>
-	             <li><a href="javascript:add()">增加数据字典 /</a><a href="javascript:searchByCondition()"> 查询</a></li>
+	             <li><a href="javascript:add()">增加数据字典 /</a><a href="javascript:searchByCondition()"> 查询</a><a href="javascript:synchronouskpg()">同步密钥算法</a></li>
 	          </ol>
         <div class="row">
             <div class="col-md-12">
@@ -249,6 +249,10 @@
 		"sDom": '<""l>t<"F"fp>'
 	});
  });
+ 
+ function synchronouskpg(){
+ self.location.replace("synchronousKpg.do");
+ }
  
 function remove(id){
    if (confirm("您确实要刪除该记录吗？")){

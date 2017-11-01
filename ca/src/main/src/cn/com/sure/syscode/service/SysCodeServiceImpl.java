@@ -116,5 +116,16 @@ public class SysCodeServiceImpl implements SysCodeService{
 		return sysCodes;
 	}
 
+	/* (non-Javadoc)
+	 * @see cn.com.sure.syscode.service.SysCodeService#deleteByParaCode(java.lang.String)
+	 */
+	@Override
+	public void deleteByParaCode(String keyPairAlgorithm) {
+		LOG.debug("deleteByParaCode - start");
+		
+		LOG.debug("deleteByParaCode - end");
+		
+	}
+
 
 }

@@ -70,4 +70,11 @@ public interface SysCodeService {
 
 
 
+	/**
+	 * @param keyPairAlgorithm
+	 */
+	void deleteByParaCode(String keyPairAlgorithm);
+
+
+
 }

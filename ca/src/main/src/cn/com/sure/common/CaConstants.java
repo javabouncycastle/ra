@@ -35,6 +35,11 @@ public class CaConstants {
 	//加密证书用法拓展
 	public static final String ENC_CERT_EXTENDED_KEY_USAGE="encCertExtendedKeyUsage";
 	
+	//socket传递同步密钥算法参数
+	public static final String SYNCHRONOUS_KPG="synchronousKpg";
+	//syscode表中密钥算法
+	public static final String KEY_PAIR_ALGORITHM="密钥算法";
+	
 	public static final long TYPE_ID_CERT_STATUS = 38L;
 
 	public static final long CODE_ID_CERT_STATUS_GET_AUTHCODE         = 3801L; //证书状态  - 获取两码成功（23）证书未下载

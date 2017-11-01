@@ -22,39 +22,6 @@
 	             </c:if> 
               <div class="table-responsive">
                 <h4 class="margin-bottom-15">证书模板列表</h4>
-                <!-- 查询条件div -->
-                 <div class="row" id="searchCondition" style="display:none">
-		            <div class="col-md-12">
-		              <form id="templatemo-preferences-form" action="searchByCondition.do" method="post" >
-		                <div class="row">
-	                	  <div class="col-md-6 margin-bottom-15">
-	                  	     <label for="id" class="control-label">主键标识</label>
-			                 <input type="number" min="0" class="form-control" name="id" id="id"/>     
-		                  </div>
-		                </div>
-		                  <div class="row">
-		                  <div class="col-md-6 margin-bottom-15">
-			                    <label for="paraValue" class="control-label">设定值 </label>
-			                    <input type="text" class="form-control" id="paraValue" name="paraValue" />                 
-		                  </div>
-		                  <div class="col-md-6 margin-bottom-15">
-		                  	<label for="notes" class="control-label">所属类型</label>
-				                    <select class="form-control margin-bottom-15" name="paraType.id" id="paratypeInfo" >
-				                    	<option value="">--请选择--</option>
-				                    	<c:forEach var="frs" items="${sysCodeTypes}">
-				                    		<option value="${frs.id}">${frs.paraType}</option>
-				                    	</c:forEach>
-				                    </select>
-		                  </div>
-		                </div>
-		                <div class="row templatemo-form-buttons">
-			                <div class="col-md-12">
-			                  <button type="submit" class="btn btn-primary">查询</button>
-			               	 </div>
-		            	 </div>
-		               </form>
-		             </div>
-		          </div>
                 <table class="table table-bordered table-striped table-hover data-table">
 		                  <thead>
 		                    <tr bgcolor="CFCFCF">
@@ -77,7 +44,6 @@
 		                    </td>
 		                    <td>${row.ctmlName}</td>
 		                    <td>${row.kpgAlgorithm.paraType}</td>
-		                    <%-- <td>${row.paraType.paraType}</td> --%>
 		                    <td>${row.isSingle}</td>
 		                    <td>${row.validity}</td>
 		                 	<td>${row.isValid=='0'?'否':'是'}</td>

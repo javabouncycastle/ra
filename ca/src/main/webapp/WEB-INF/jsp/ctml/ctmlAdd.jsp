@@ -167,10 +167,6 @@
 	});
  });
 
-
-function add(){
-	$("#modal_insert").modal('show');
-}
 </script>
 
 <c:if test="${success != null && success != ''}">     

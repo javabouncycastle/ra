@@ -44,6 +44,7 @@
 			ksty.notes as typeNotes
 		 from ca_sys_code ks,ca_sys_param_type ksty
 		 where ks.para_type=ksty.id
+		 order by id
 	</select>
 	
 	<select id="findById" parameterType="cn.com.sure.syscode.entry.SysCode" resultType="cn.com.sure.syscode.entry.SysCode">
