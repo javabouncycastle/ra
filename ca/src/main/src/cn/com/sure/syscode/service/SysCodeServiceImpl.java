@@ -2,8 +2,6 @@ package cn.com.sure.syscode.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +26,11 @@ public class SysCodeServiceImpl implements SysCodeService{
 	
 
 	@Override
-	public int insert(SysCode sysCode, HttpServletRequest request)
+	public int insert(SysCode sysCode)
 			throws CaApplicationexception {
 		LOG.debug("insert - start");
 		SysCode dbSysCode = sysCodeDAO.findByName(sysCode);
 		int i = 0 ;
-		i =sysCodeDAO.insert(sysCode);
 		if(dbSysCode==null){
 			i =sysCodeDAO.insert(sysCode);	
 		}if(dbSysCode!=null){
@@ -120,12 +117,12 @@ public class SysCodeServiceImpl implements SysCodeService{
 	 * @see cn.com.sure.syscode.service.SysCodeService#deleteByParaCode(java.lang.String)
 	 */
 	@Override
-	public void deleteByParaCode(String keyPairAlgorithm) {
+	public void deleteByParaType(String keyPairAlgorithm) {
 		LOG.debug("deleteByParaCode - start");
-		
+		sysCodeDAO.deleteByParaCode(keyPairAlgorithm);
 		LOG.debug("deleteByParaCode - end");
-		
 	}
+
 
 
 }

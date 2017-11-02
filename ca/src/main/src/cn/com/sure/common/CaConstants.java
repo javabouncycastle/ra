@@ -38,7 +38,9 @@ public class CaConstants {
 	//socket传递同步密钥算法参数
 	public static final String SYNCHRONOUS_KPG="synchronousKpg";
 	//syscode表中密钥算法
-	public static final String KEY_PAIR_ALGORITHM="密钥算法";
+	public static final String KEY_PAIR_ALGORITHM="kpgAlgorithm";
+	
+	public static final String PARA_CODE="密钥算法";
 	
 	public static final long TYPE_ID_CERT_STATUS = 38L;
 

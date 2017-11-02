@@ -49,5 +49,11 @@ public interface SysCodeTypeService {
 	 * @return
 	 */
 	SysCodeType selectById(String string);
+
+	/**
+	 * @param keyPairAlgorithm
+	 * @return 
+	 */
+	SysCodeType findIdByParaType(String keyPairAlgorithm);
 	
 }

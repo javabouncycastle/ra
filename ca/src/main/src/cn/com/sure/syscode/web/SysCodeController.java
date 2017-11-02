@@ -54,7 +54,7 @@ public class SysCodeController {
 		LOG.debug("insert - start!");
 		try{
 			//执行insert操作
-			int i = sysCodeService.insert(sysCode,request);
+			int i = sysCodeService.insert(sysCode);
 			//添加审计日志
 			int result;
 			if(i==-1){
@@ -208,16 +208,22 @@ public class SysCodeController {
 	 * @return
 	 */
 	@RequestMapping(value="synchronousKpg")
-	public String synchronousKpg(){
+	public String synchronousKpg(Model model,RedirectAttributes attr){
 		LOG.debug("synchronousKpg - start");
 		
 		//1.删除数据字典表中关于密钥算法的记录
-		sysCodeService.deleteByParaCode(CaConstants.KEY_PAIR_ALGORITHM);
+		sysCodeService.deleteByParaType(CaConstants.KEY_PAIR_ALGORITHM);
 		
 		//2.通过socket把同步的信息传到km
-		new Thread(new CaSocketClientThread()).start();
+		new Thread(new CaSocketClientThread(sysCodeService,sysCodeTypeService)).start();
 		
 		LOG.debug("synchronousKpg - end");
+		
+		sysCodeService.selectAll();
+		
+		attr.addFlashAttribute("success","true");
+		attr.addFlashAttribute("msg","同步密钥算法成功");
+		
 		return "redirect:/syscode/selectAll.do";
 	}
 	

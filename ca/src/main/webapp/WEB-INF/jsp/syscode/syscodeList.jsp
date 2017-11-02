@@ -102,7 +102,7 @@
            <div class="modal-content">
             	<div class="modal-header">
              	  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-              	  <h4 class="modal-title" >新增密钥算法</h4>
+              	  <h4 class="modal-title" >新增数据字典</h4>
                 </div>
           		<form action="insert.do" method="post">
             		<div class="modal-header">

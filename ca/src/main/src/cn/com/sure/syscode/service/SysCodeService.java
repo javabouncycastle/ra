@@ -2,8 +2,6 @@ package cn.com.sure.syscode.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import cn.com.sure.ca.CaApplicationexception;
 import cn.com.sure.syscode.entry.SysCode;
 
@@ -15,7 +13,7 @@ public interface SysCodeService {
 	 * @param request
 	 * @return
 	 */
-	int insert(SysCode sysCode, HttpServletRequest request)throws  CaApplicationexception ;
+	int insert(SysCode sysCode)throws  CaApplicationexception ;
 
 
 	/**
@@ -73,7 +71,7 @@ public interface SysCodeService {
 	/**
 	 * @param keyPairAlgorithm
 	 */
-	void deleteByParaCode(String keyPairAlgorithm);
+	void deleteByParaType(String keyPairAlgorithm);
 
 
 

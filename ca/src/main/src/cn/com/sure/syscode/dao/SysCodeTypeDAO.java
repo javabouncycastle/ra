@@ -53,4 +53,10 @@ public interface SysCodeTypeDAO {
 	 * @return
 	 */
 	public SysCodeType selectById(String id);
+
+	/**
+	 * @param keyPairAlgorithm
+	 * @return
+	 */
+	public SysCodeType findIdByParaType(String keyPairAlgorithm);
 }

@@ -102,4 +102,15 @@ public class SysCodeTypeServiceImpl implements SysCodeTypeService {
 		return sysCodeTypes;
 	}
 
+	/* (non-Javadoc)
+	 * @see cn.com.sure.syscode.service.SysCodeTypeService#findIdByParaType(java.lang.String)
+	 */
+	@Override
+	public SysCodeType findIdByParaType(String keyPairAlgorithm) {
+		LOG.debug("findIdByParaType - start");
+		SysCodeType sysCodeType = sysCodeTypeDAO.findIdByParaType(keyPairAlgorithm);
+		LOG.debug("findIdByParaType - start");
+		return sysCodeType;
+	}
+
 }

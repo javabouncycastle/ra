@@ -22,6 +22,16 @@
 		  id=#{id}
 	</select>
 	
+	<select id="findIdByParaType" parameterType="cn.com.sure.syscode.entry.SysCodeType" resultType="cn.com.sure.syscode.entry.SysCodeType">
+		select 
+			id,
+			para_type as paraType,
+			notes
+		 from ca_sys_param_type
+		 where
+		  para_type=#{paraType}
+	</select>
+	
 	<select id="selectAll" parameterType="cn.com.sure.syscode.entry.SysCodeType" resultType="cn.com.sure.syscode.entry.SysCodeType">
 		select 
 			id,

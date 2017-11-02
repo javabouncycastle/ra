@@ -109,6 +109,15 @@
 		delete from ca_sys_code where id=#{id}
 	</delete>
 	
+	<delete id="deleteByParaCode" parameterType="String" >
+		delete 
+			csc
+		from 
+			ca_sys_code as csc, ca_sys_param_type as cspt
+		where 
+			csc.para_type=cspt.id and cspt.para_type=#{paraType}
+	</delete>
+	
 	 <select id="serachByContion" parameterType="cn.com.sure.syscode.entry.SysCode" resultMap="SysCodeResultMap">
 		select 
 			ks.id as id,

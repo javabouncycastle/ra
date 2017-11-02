@@ -3,23 +3,26 @@
  */
 package cn.com.sure.ca.socket;
 
-import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.net.Socket;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.alibaba.fastjson.JSONArray;
-
+import cn.com.sure.ca.CaApplicationexception;
 import cn.com.sure.ca.ResourceBundleSocketMessage;
 import cn.com.sure.ca.km.CaKeyPairAlgorithm;
 import cn.com.sure.common.CaConstants;
+import cn.com.sure.syscode.entry.SysCode;
+import cn.com.sure.syscode.entry.SysCodeType;
+import cn.com.sure.syscode.service.SysCodeService;
+import cn.com.sure.syscode.service.SysCodeTypeService;
+
+import com.alibaba.fastjson.JSONArray;
 
 
 /**
@@ -30,7 +33,13 @@ public class CaSocketClientThread extends Thread{
 	
 	private static final Log LOG = LogFactory.getLog(CaSocketClientThread.class);
 	
-	public CaSocketClientThread() {
+	private SysCodeService sysCodeService;
+	private SysCodeTypeService sysCodeTypeService;
+	
+	
+	public CaSocketClientThread(SysCodeService sysCodeService , SysCodeTypeService sysCodeTypeService) {
+		this.sysCodeService=sysCodeService;
+		this.sysCodeTypeService=sysCodeTypeService;
 	}
 	
 	public void run(){
@@ -85,15 +94,36 @@ public class CaSocketClientThread extends Thread{
 					reqlen = reqlen - bufferlength;							
 				}
 			}
+			String reStr=new String(reqinfo);
 			
 			
-			reqinfo.
+			List<CaKeyPairAlgorithm> caKeyPairAlgorithms = new ArrayList<CaKeyPairAlgorithm>();
+			caKeyPairAlgorithms=JSONArray.parseArray(reStr, CaKeyPairAlgorithm.class);
 			
-			//JSONArray data = JSONArray.fromObject(req);
+			for(int i = 0; i< caKeyPairAlgorithms.size() ; i++){
+				
+				SysCode sysCode = new SysCode();
+				SysCodeType sysCodeType = new SysCodeType();
+				
+				sysCodeType = sysCodeTypeService.findIdByParaType(CaConstants.KEY_PAIR_ALGORITHM);
+				
+				sysCodeType.setParaType(sysCodeType.getId());
+				
+				sysCode.setParaType(sysCodeType);
+				sysCode.setParaValue(caKeyPairAlgorithms.get(i).getAlgorithmName());
+				sysCode.setParaCode(CaConstants.PARA_CODE+i);
+				sysCode.setIsValid(caKeyPairAlgorithms.get(i).getIsValid());
+				sysCode.setNotes(caKeyPairAlgorithms.get(i).getNotes());
+				
+				try {
+					sysCodeService.insert(sysCode);
+				} catch (CaApplicationexception e) {
+					e.printStackTrace();
+				}
+			}
+			
 
-			//List<CaKeyPairAlgorithm> algorithms = 
-			
-			LOG.debug("接收返回来的信息 --- end");
+			//LOG.debug("接收返回来的信息 --- end");
 			dos.close();
 			socket.close();
 			
