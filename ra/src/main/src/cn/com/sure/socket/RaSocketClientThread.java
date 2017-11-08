@@ -43,6 +43,8 @@ public class RaSocketClientThread extends Thread {
 	        	
 	        	LOG.debug("创建一个新的socket开始");
 				Socket socket = new Socket(rbem.getMessage("caIp",  new Object[]{ "",""}),Integer.parseInt(rbem.getMessage("caPort",  new Object[]{ "",""})));
+				System.out.println(rbem.getMessage("caIp",  new Object[]{ "",""}));
+				System.out.println(Integer.parseInt(rbem.getMessage("caPort",  new Object[]{ "",""})));
 				DataOutputStream dos = new DataOutputStream(socket.getOutputStream()) ;
 				
 				
@@ -91,9 +93,25 @@ public class RaSocketClientThread extends Thread {
 				List<RaCertTemplate> raCertTemplates = new ArrayList<RaCertTemplate>();
 				raCertTemplates = JSONArray.parseArray(reStr,RaCertTemplate.class);
 				
+				//解析socket返回回来的信息，并且将信息插入到证书模板表中
 				for(int i = 0; i<raCertTemplates.size();i++){
 					
-					raCertTemplateService.insert(raCertTemplates.get(i));
+					RaCertTemplate raCertTemplate = new RaCertTemplate();
+					
+					raCertTemplate.setBaseDn(raCertTemplates.get(i).getBaseDn());
+					raCertTemplate.setCtmlName(raCertTemplates.get(i).getCtmlName());
+					raCertTemplate.setEncCertExtendedKeyUsage(raCertTemplates.get(i).getEncCertExtendedKeyUsage());
+					raCertTemplate.setEncCertKeyUsage(raCertTemplates.get(i).getEncCertKeyUsage());
+					raCertTemplate.setIsSingle(raCertTemplates.get(i).getIsSingle());
+					raCertTemplate.setIsValid(raCertTemplates.get(i).getIsValid());
+					raCertTemplate.setNotes(raCertTemplates.get(i).getNotes());
+					raCertTemplate.setReviewedType(raCertTemplates.get(i).getReviewedType());
+					raCertTemplate.setSignCertExtendedKeyUsage(raCertTemplates.get(i).getSignCertExtendedKeyUsage());
+					raCertTemplate.setSignCertKeyUsage(raCertTemplates.get(i).getSignCertKeyUsage());
+					raCertTemplate.setResValidity(raCertTemplates.get(i).getResValidity());
+					raCertTemplate.setResKpgAlgorithm(raCertTemplates.get(i).getResKpgAlgorithm());
+					
+					raCertTemplateService.insert(raCertTemplate);
 					
 				}
 				

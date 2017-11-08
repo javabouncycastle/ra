@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
-<mapper namespace="cn.com.sure.ca.template.dao.CertTemplateDAO">
+<mapper namespace="cn.com.sure.ca.template.dao.CaCertTemplateDAO">
 
 	<resultMap type="cn.com.sure.ca.template.entry.CaCertTemplate" id="CertTemplateResultMap">
 		<id column="id" javaType="String" property="id"/>
@@ -12,6 +12,8 @@
 		<result column="encCertKeyUsage" javaType="String" property="encCertKeyUsage"/>
 		<result column="encCertExtendedKeyUsage" javaType="String" property="encCertExtendedKeyUsage"/>
 		<result column="notes" javaType="String" property="notes"/>
+		<result column="baseDn" javaType="String" property="baseDn"/>
+		<result column="reviewedType" javaType="String" property="reviewedType"/>
 		<association property="kpgAlgorithm" javaType="cn.com.sure.syscode.entry.CaSysCode">
 			<id column="TypeId" javaType="String" property="id"/>
 			<result column="paraCode" javaType="String" property="paraCode"/>
@@ -59,7 +61,7 @@
 		 	ctml.kpg_algorithm=csc.id
 	</select>
 	
-		<select id="selectStandby" parameterType="cn.com.sure.ca.template.entry.CaCertTemplate" resultMap="CertTemplateResultMap">
+	<select id="selectStandby" parameterType="cn.com.sure.ca.template.entry.CaCertTemplate" resultMap="CertTemplateResultMap">
 		select 
 			ctml.id as id,
 			ctml.ctml_name as ctmlName,
@@ -70,15 +72,25 @@
 			ctml.sign_cert_extended_key_usage as signCertExtendedKeyUsage,
 			ctml.enc_cert_key_usage as encCertKeyUsage,
 			ctml.enc_cert_extended_key_usage as encCertExtendedKeyUsage,
-			ctml.validity as validity,
+			ctml.reviewed_type as reviewedType,
 			ctml.notes as notes,
+			ctml.validity as validity,
+			ctml.base_dn as baseDn,
+			ctml.reviewed_type as reviewedType,
 			csc.id as TypeId,
-			csc.para_type as typeParaType
+			csc.para_type as typeParaType,
+			csc.para_value as paraValue,
+			csc2.id as SysCodeIdDb,
+			csc2.para_type as typeParaTypeDb,
+			csc2.para_value as paraValueDb
 		 from 
-		 	ca_ctml ctml, ca_sys_code csc
+		 	ca_ctml ctml, ca_sys_code csc ,ca_sys_code csc2
 		 where 
 		 	ctml.kpg_algorithm=csc.id
-		 	and ctml.is_valid=#{isValid}
+		  and 
+		 	ctml.validity=csc2.id 
+		 and 
+		 	ctml.is_valid=#{isValid}
 	</select>
 	
 	<select id="findById" parameterType="cn.com.sure.ca.template.entry.CaCertTemplate" resultMap="CertTemplateResultMap">
@@ -113,7 +125,6 @@
 			sign_cert_extended_key_usage,
 			enc_cert_key_usage,
 			enc_cert_extended_key_usage,
-			validity,
 			notes
 		)values(
 			#{ctmlName},

@@ -68,6 +68,15 @@ public class CaCertTemplate {
 	 */
 	private String reviewedType;
 	
+	/**
+	 * 密钥对算法，用于socket传输。syscode类型的密钥算法传过去无法解析出来密钥对名字
+	 */
+	private String resKpgAlgorithm;
+	
+	/**
+	 * String类型的证书天数，用于socket传输
+	 */
+	private String resValidity;
 	
 	/**
 	 * 备注
@@ -176,6 +185,22 @@ public class CaCertTemplate {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+
+	public String getResKpgAlgorithm() {
+		return resKpgAlgorithm;
+	}
+
+	public void setResKpgAlgorithm(String resKpgAlgorithm) {
+		this.resKpgAlgorithm = resKpgAlgorithm;
+	}
+
+	public String getResValidity() {
+		return resValidity;
+	}
+
+	public void setResValidity(String resValidity) {
+		this.resValidity = resValidity;
 	}
 	
 }

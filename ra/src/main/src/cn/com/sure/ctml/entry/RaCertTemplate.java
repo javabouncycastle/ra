@@ -19,14 +19,14 @@ private String id;
 	private String ctmlName;
 	
 	/**
-	 * 密钥对类型，引用数据字典表
+	 * 密钥对类型
 	 */
-	private String kpgAlgorithm;
+	private String resKpgAlgorithm;
 	
 	/**
 	 * 有效期天数
 	 */
-	private String validity;
+	private String resValidity;
 	
 	/**
 	 * 是否单证书
@@ -67,6 +67,13 @@ private String id;
 	 * 审核类型，自动审核or手动审核
 	 */
 	private String reviewedType;
+	
+	/**
+	 * 备注
+	 * @return
+	 */
+	private String notes;
+	
 
 	public String getId() {
 		return id;
@@ -84,20 +91,12 @@ private String id;
 		this.ctmlName = ctmlName;
 	}
 
-	public String getKpgAlgorithm() {
-		return kpgAlgorithm;
+	public String getResValidity() {
+		return resValidity;
 	}
 
-	public void setKpgAlgorithm(String kpgAlgorithm) {
-		this.kpgAlgorithm = kpgAlgorithm;
-	}
-
-	public String getValidity() {
-		return validity;
-	}
-
-	public void setValidity(String validity) {
-		this.validity = validity;
+	public void setResValidity(String resValidity) {
+		this.resValidity = resValidity;
 	}
 
 	public Integer getIsSingle() {
@@ -162,6 +161,22 @@ private String id;
 
 	public void setReviewedType(String reviewedType) {
 		this.reviewedType = reviewedType;
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
+	public String getResKpgAlgorithm() {
+		return resKpgAlgorithm;
+	}
+
+	public void setResKpgAlgorithm(String resKpgAlgorithm) {
+		this.resKpgAlgorithm = resKpgAlgorithm;
 	}
 	
 

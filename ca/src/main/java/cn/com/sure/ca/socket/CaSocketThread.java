@@ -64,7 +64,7 @@ public class CaSocketThread extends Thread{
  	        	//调用socketService实现业务逻辑
  	        	response = socketService.handleSocket(reqinfo);
 			} catch (Exception e) {
-				
+				e.printStackTrace();
 			}
 	        //返回 
 	        DataOutputStream dos = new DataOutputStream(socket.getOutputStream());

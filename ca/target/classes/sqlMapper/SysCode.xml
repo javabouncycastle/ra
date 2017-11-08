@@ -8,7 +8,7 @@
 		<result column="paraValue" javaType="String" property="paraValue"/>
 		<result column="isValid" javaType="int" property="isValid"/>
 		<result column="notes" javaType="String" property="notes"/>
-		<association property="paraType" javaType="cn.com.sure.syscode.entry.CaSysCode" >
+		<association property="paraType" javaType="cn.com.sure.syscode.entry.CaSysCodeType" >
 			<id column="TypeId" javaType="String" property="id"/>
 			<result column="typeParaType" javaType="String" property="paraType"/>
 			<result column="typeNotes" javaType="String" property="notes"/>
@@ -44,7 +44,6 @@
 			ksty.notes as typeNotes
 		 from ca_sys_code ks,ca_sys_param_type ksty
 		 where ks.para_type=ksty.id
-		 order by id
 	</select>
 	
 	<select id="findById" parameterType="cn.com.sure.syscode.entry.CaSysCode" resultType="cn.com.sure.syscode.entry.CaSysCode">

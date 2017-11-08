@@ -22,7 +22,7 @@
 	
 	
 	<insert id="insert" parameterType="cn.com.sure.ctml.entry.RaCertTemplate">
-		insert into ca_ctml(
+		insert into ra_ctml(
 			ctml_name,
 			kpg_algorithm,
 			is_single,
@@ -35,14 +35,14 @@
 			notes
 		)values(
 			#{ctmlName},
-			#{kpgAlgorithm},
+			#{resKpgAlgorithm},
 			#{isSingle},
 			#{isValid},
 			#{signCertKeyUsage},
 			#{signCertExtendedKeyUsage},
 			#{encCertKeyUsage},
 			#{encCertExtendedKeyUsage},
-			#{validity},
+			#{resValidity},
 			#{notes}
 		)
 	</insert>
@@ -51,6 +51,6 @@
 		delete from ra_ctml 
 	</delete>
 		<update id="updateValid" parameterType="cn.com.sure.ctml.entry.RaCertTemplate">
-		update ca_ctml set is_valid=#{isValid} where id=#{id}
+		update ra_ctml set is_valid=#{isValid} where id=#{id}
 	</update>
 </mapper>
