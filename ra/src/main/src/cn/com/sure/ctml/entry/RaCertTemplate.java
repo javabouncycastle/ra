@@ -74,6 +74,12 @@ private String id;
 	 */
 	private String notes;
 	
+	/**
+	 * CA的id
+	 * @return
+	 */
+	private String commonId;
+	
 
 	public String getId() {
 		return id;
@@ -178,6 +184,13 @@ private String id;
 	public void setResKpgAlgorithm(String resKpgAlgorithm) {
 		this.resKpgAlgorithm = resKpgAlgorithm;
 	}
-	
+
+	public String getCommonId() {
+		return commonId;
+	}
+
+	public void setCommonId(String commonId) {
+		this.commonId = commonId;
+	}
 
 }

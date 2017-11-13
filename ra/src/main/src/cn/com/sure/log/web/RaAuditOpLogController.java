@@ -24,7 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import cn.com.sure.common.BaseController;
 import cn.com.sure.log.entry.RaAuditOpLog;
 import cn.com.sure.log.service.RaAuditOpLogService;
-import cn.com.sure.ra.CaErrorMessageConstants;
+import cn.com.sure.ra.RaErrorMessageConstants;
 import cn.com.sure.syscode.web.RaSysCodeController;
 
 /**
@@ -83,7 +83,7 @@ public class RaAuditOpLogController extends BaseController {
 		 return "redirect:/auditOpLog/selectAll.do.do";
 		} catch (IOException e) {
 			e.printStackTrace();
-			return String.valueOf(CaErrorMessageConstants.exportError);
+			return String.valueOf(RaErrorMessageConstants.exportError);
 		}
 		
 	}

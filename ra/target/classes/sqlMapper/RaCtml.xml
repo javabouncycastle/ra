@@ -32,7 +32,8 @@
 			enc_cert_key_usage,
 			enc_cert_extended_key_usage,
 			validity,
-			notes
+			notes,
+			common_id
 		)values(
 			#{ctmlName},
 			#{resKpgAlgorithm},
@@ -43,7 +44,8 @@
 			#{encCertKeyUsage},
 			#{encCertExtendedKeyUsage},
 			#{resValidity},
-			#{notes}
+			#{notes},
+			#{commonId}
 		)
 	</insert>
 	

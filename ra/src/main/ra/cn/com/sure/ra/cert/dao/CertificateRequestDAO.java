@@ -1,13 +1,15 @@
 /**
  * 
  */
-package cn.com.sure.ra.cert.service;
+package cn.com.sure.ra.cert.dao;
+
+import cn.com.sure.ra.cert.service.CertificateRequestService;
 
 /**
  * @author Limin
  *
  */
-public interface CertificateRequestService {
+public interface CertificateRequestDAO {
 
 	/**
 	 * @param certificateRequestService

@@ -5,11 +5,13 @@ package cn.com.sure.ra.cert.entry;
 
 import java.util.Date;
 
+import org.bouncycastle.asn1.crmf.CertTemplate;
+
 /**
  * @author Limin
  *
  */
-public class CeritificateRequest {
+public class CertificateRequest {
 	
 	/**
 	 * 证书dn
@@ -34,7 +36,7 @@ public class CeritificateRequest {
 	/**
 	 * 证书模板号
 	 */
-	private String ctmlId;
+	private CertTemplate ctmlId;
 	
 	/**
 	 * 管理员
@@ -73,11 +75,11 @@ public class CeritificateRequest {
 		this.endTime = endTime;
 	}
 
-	public String getCtmlId() {
+	public CertTemplate getCtmlId() {
 		return ctmlId;
 	}
 
-	public void setCtmlId(String ctmlId) {
+	public void setCtmlId(CertTemplate ctmlId) {
 		this.ctmlId = ctmlId;
 	}
 

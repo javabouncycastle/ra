@@ -110,6 +110,7 @@ public class RaSocketClientThread extends Thread {
 					raCertTemplate.setSignCertKeyUsage(raCertTemplates.get(i).getSignCertKeyUsage());
 					raCertTemplate.setResValidity(raCertTemplates.get(i).getResValidity());
 					raCertTemplate.setResKpgAlgorithm(raCertTemplates.get(i).getResKpgAlgorithm());
+					raCertTemplate.setCommonId(raCertTemplates.get(i).getId());
 					
 					raCertTemplateService.insert(raCertTemplate);
 					

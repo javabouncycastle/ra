@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.com.sure.ra.RaApplicationexception;
-import cn.com.sure.ra.CaErrorMessageConstants;
+import cn.com.sure.ra.RaErrorMessageConstants;
 import cn.com.sure.syscode.dao.RaSysCodeTypeDAO;
 import cn.com.sure.syscode.entry.RaSysCodeType;
 
@@ -41,7 +41,7 @@ public class RaSysCodeTypeServiceImpl implements RaSysCodeTypeService {
 		if(dbSysCodeType==null){
 			i = sysCodeTypeDAO.insert(sysCodeType);
 		}if(dbSysCodeType!=null){
-			RaApplicationexception.throwException(CaErrorMessageConstants.paraTypeValueExist, new String[]{sysCodeType.getParaType()});
+			RaApplicationexception.throwException(RaErrorMessageConstants.paraTypeValueExist, new String[]{sysCodeType.getParaType()});
 		}
 		LOG.debug("insert - start");
 		return i;

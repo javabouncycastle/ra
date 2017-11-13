@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
 
+import cn.com.sure.ca.CaApplicationexception;
+import cn.com.sure.ca.CaErrorMessageConstants;
 import cn.com.sure.ca.template.entry.CaCertTemplate;
 import cn.com.sure.ca.template.service.CaCertTemplateService;
 import cn.com.sure.common.CaConstants;
@@ -36,7 +38,7 @@ public class CaSocketServiceImpl implements CaSocketService{
 	 * @see cn.com.sure.ca.socket.CaSocketService#handleSocket(byte[])
 	 */
 	@Override
-	public byte[] handleSocket(byte[] reqinfo) {
+	public byte[] handleSocket(byte[] reqinfo) throws CaApplicationexception {
 		LOG.debug("synchronousCtml - start");
 		
 		//1.对申请信息进行处理
@@ -48,6 +50,11 @@ public class CaSocketServiceImpl implements CaSocketService{
 			List<CaCertTemplate> caCertTemplates = caCertTemplateService.selectStandby();
 			
 			CaCertTemplate caCertTemplate = new CaCertTemplate();
+			
+			if(caCertTemplates==null){
+				CaApplicationexception.throwException(CaErrorMessageConstants.ctmlNotExist, null);
+			}
+			
 			
 			List <CaCertTemplate> resCaCertTemplates = new ArrayList<>();
 			for(int i=0;i<caCertTemplates.size();i++){

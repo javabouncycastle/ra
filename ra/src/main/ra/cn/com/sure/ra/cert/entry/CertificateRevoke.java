@@ -9,7 +9,7 @@ import java.util.Date;
  * @author Limin
  *
  */
-public class CeritificateRevoke {
+public class CertificateRevoke {
 	
 private String id;
 	
