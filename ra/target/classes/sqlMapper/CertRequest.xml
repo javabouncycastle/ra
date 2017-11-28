@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
-<mapper namespace="cn.com.sure.ra.cert.dao.CertificateRequestDAO">  
+<mapper namespace="cn.com.sure.ra.cert.dao.RaCertificateRequestDAO">  
 
-	<insert id="insert" parameterType="cn.com.sure.syscode.entry.RaSysCodeType">
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="cn.com.sure.syscode.entry.RaSysCodeType"><!-- 获取插入信息的id -->
 		insert into cert_req(
-			
+			cert_cn,
+			cert_dn,
+			request_time,
+			start_time,
+			end_time,
+			ctml_id,
+			admin
 		)values(
-			
+			#{certCn},
+			#{certDn},
+			#{requestTime},
+			#{startTime},
+			#{endTime},
+			#{ctmlId},
+			#{admin}
 		)
 	</insert>
 	

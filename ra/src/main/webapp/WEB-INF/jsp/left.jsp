@@ -33,10 +33,30 @@
             		</ul>
             		<ul class="templatemo-submenu">
 	              		<li>
-	              			<a href="<%=request.getContextPath()%>/certTemplate/selectAll.do"><font style='font-family:"微软雅黑"'>证书模板列表</font></a>
+	              			<a href="<%=request.getContextPath()%>/raCertTemplate/selectAll.do"><font style='font-family:"微软雅黑"'>证书模板列表</font></a>
 	              		</li>
             		</ul>
           		</li>
+          		
+          		
+          		<li class="sub">
+            		<a href="javascript:;">
+              			<i class="fa fa-database"></i>
+              			<font style='font-family:"微软雅黑"'>证书管理</font>
+              			<div class="pull-right"><span class="caret"></span>
+              		</div>
+            		</a>
+            		<ul class="templatemo-submenu">
+	              		<li>
+	              			<a href="<%=request.getContextPath()%>/raCertRequest/forwardInsert.do"><font style='font-family:"微软雅黑"'>申请证书</font></a>
+	              		</li>
+            		</ul>
+          		</li>
+          		
+          		
+          		
+          		
+          		
          		<li class="sub">
 		            <a href="javascript:;">
 		              <i class="fa fa-database"></i><font style='font-family:"微软雅黑"'>日志管理</font><div class="pull-right"><span class="caret"></span></div>
