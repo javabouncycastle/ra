@@ -9,7 +9,6 @@
 	          <ol class="breadcrumb">
 	            <li><a href="<%=request.getContextPath()%>/main">主页面</a></li>
 	            <li class="active">证书模板列表</li>
-	            <li><a href="../../sign-in.html">Sign In Form</a></li>
 	             <li><a href="javascript:searchByCondition()">查询</a></li>
 	          </ol>
         <div class="row">
